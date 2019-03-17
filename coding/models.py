@@ -14,3 +14,9 @@ class Coding(models.Model):
 
     def generate(self):
         return self.save()
+    
+    def __str__(self):
+        return self.content
+    
+    def delete(self):
+        Coding.objects.all().delete()

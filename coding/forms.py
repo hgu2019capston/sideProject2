@@ -1,19 +1,14 @@
+
 from django.forms import ModelForm
 from django import forms
-from codemirror import CodeMirrorTextarea
+#from codemirror import CodeMirrorTextarea
 from .models import Coding
 
-class CodingForm(forms.Form):
+class CodingForm(ModelForm):
 
-    codemirror_widget = CodeMirrorTextarea(
-            mode = 'python',
-            theme = 'cobalt',
-            config = {
-                    'fixedGutter': True
-                    },
-    )
-
-    content = forms.CharField(widget=codemirror_widget)
+    class Meta:
+        model = Coding
+        fields = ['content']
 
     def save(self, commit=True):
         coding = Coding(**self.cleaned_data)

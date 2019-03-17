@@ -1,3 +1,8 @@
 from django.contrib import admin
+from .models import Coding
 
-# Register your models here.
+
+'''class CodingAdmin(admin.ModelAdmin):
+    fieldsets = ['id', 'content']'''
+
+admin.site.register(Coding)
