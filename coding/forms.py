@@ -8,7 +8,7 @@ class CodingForm(ModelForm):
 
     class Meta:
         model = Coding
-        fields = ['content']
+        fields = ['languages','content']
 
     def save(self, commit=True):
         coding = Coding(**self.cleaned_data)

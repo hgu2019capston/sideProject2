@@ -1,7 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 
-from codemirror import CodeMirrorTextarea
 from django import forms
 
 from .forms import CodingForm
@@ -16,7 +15,7 @@ def get_code(request):
         if form.is_valid():
                  Coding = form.save()
                  Coding.generate()
-                 file()
+                 file(Coding.content)
                  x=runfile()
         return HttpResponse(x)
    

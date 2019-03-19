@@ -1,8 +1,8 @@
 from .models import Coding
 
-def file():
-    f= open("coding/content.py","w")
-    coding=Coding.objects.get(content='print("hello~")')
+def file(usercontent):
+    f= open("coding/content.c","w")
+    coding=Coding.objects.get(content=usercontent)
     f.write("%s" % coding)
     f.close()
     #Open the file back and read the contents

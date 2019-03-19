@@ -7,7 +7,7 @@ class Coding(models.Model):
             (3, ('Java')),
             (4, ('C++')),
             )
-    
+
     languages = models.IntegerField(choices=TYPE_LANGUAGES, default=1)
     content = models.CharField(max_length = 10000)
 
