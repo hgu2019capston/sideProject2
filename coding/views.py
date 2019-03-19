@@ -15,9 +15,9 @@ def get_code(request):
         if form.is_valid():
                  Coding = form.save()
                  Coding.generate()
-                 file(Coding.content)
-                 x=runfile()
-        return HttpResponse(x)
+                 file(Coding.languages)
+                 result=runfile(Coding.languages)
+        return HttpResponse(result)
    
     else :
         form = CodingForm()

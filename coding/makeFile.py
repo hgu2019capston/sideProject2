@@ -1,17 +1,27 @@
 from .models import Coding
+from  django.http import HttpResponse
 
-def file(usercontent):
-    f= open("coding/content.c","w")
-    coding=Coding.objects.get(content=usercontent)
-    f.write("%s" % coding)
-    f.close()
-    #Open the file back and read the contents
-    #f=open("guru99.txt", "r")
-    #if f.mode == 'r':
-    #   contents =f.read()
-    #    print (contents)
-    #or, readlines reads the individual line into a list
-    #fl =f.readlines()
-    #for x in fl:
-    #print(x)
 
+def file(languages):
+    code = Coding.objects.last().content
+
+    if languages == 1:
+        f=open("coding/content.py","w")
+        f.write("%s" % code)
+        f.close()
+        
+    elif languages == 2:
+        f=open("coding/content.c","w")
+        f.write("%s" % code)
+        f.close()
+                   
+    elif languages == 3:
+        f=open("coding/content.java","w")
+        f.write("%s" % code)
+        f.close()
+          
+    else:
+        f=open("coding/content.cpp","w")
+        f.write("%s" % code)
+        f.close()
+        

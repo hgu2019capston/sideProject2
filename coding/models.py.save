@@ -1,5 +1,9 @@
 from django.db import models
 
+from content_editor.models import(
+    Template, Region, create_plugin_base
+)
+
 class Coding(models.Model):
     TYPE_LANGUAGES = (
             (1, ('python')),
@@ -7,10 +11,14 @@ class Coding(models.Model):
             (3, ('Java')),
             (4, ('C++')),
             )
-
+    
     languages = models.IntegerField(choices=TYPE_LANGUAGES, default=1)
     content = models.TextField(max_length = 10000)
-
+    regions = [
+            Region(key='main', title='main region'),
+            Region(key='sidebar', title='sidebar region',
+               inherited=False),
+    ]
 
     def generate(self):
         return self.save()
