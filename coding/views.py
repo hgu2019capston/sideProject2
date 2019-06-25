@@ -7,6 +7,7 @@ from .forms import CodingForm
 from .models import Coding
 from .makeFile import file
 from .runFile import runfile
+import json
 
 from django.http import JsonResponse
 
@@ -34,6 +35,10 @@ def codePage(request):
 def postCode(request):
 	if request.method == "POST" and request.is_ajax():
 		form = CodingForm(request.POST)
-		form.save()
-		return JsonResponse({"success":True}, status=200)
+		Coding = form.save()
+		Coding.generate()
+		file(Coding.languages)
+		result = runfile(Coding.languages)
+		result = result.decode('utf-8')
+		return JsonResponse({"success":result}, status=200)
 	return JsonResponse({"success":False}, status=400)

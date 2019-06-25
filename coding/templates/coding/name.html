@@ -8,7 +8,7 @@
 {% block content %}
 <div class="container">
    <div class="jumbotron">
-      <h1 class="text-center display-4">Contact Form[FBV]</h1>
+      <h1 class="text-center display-4">SideProject 2</h1>
       <p class="lead text-center">This is sample example for integration of AJAX with Django</p>
     </div>
     <div class="row justify-content-center align-items-center">
@@ -16,6 +16,7 @@
       	<form id = "codeForm" method= "POST">{% csrf_token %}
       		{{ form.as_p }}
       		<input type="submit" name="code-submit" class="btn btn-primary" />
+		<p id = "coding-result"></p>
       	</form>
       </div>
    </div>
@@ -36,7 +37,7 @@ $(document).ready(function(){
       		data : serializedData,
       		success : function(response){
 			//reset the form after successful submit
-      			$("#codeForm")[0].reset(); 
+      			$("#coding-result").text(response.success); 
       		},
       		error : function(response){
       			console.log(response)
