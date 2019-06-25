@@ -9,9 +9,9 @@ class CodingForm(ModelForm):
     class Meta:
         model = Coding
         fields = ['languages','content']
-
-    def save(self, commit=True):
-        coding = Coding(**self.cleaned_data)
-        if commit:
-            coding.save()
-        return coding
+   
+    def __init__(self, *args, **kwargs):
+        super(CodingForm, self).__init__(*args, **kwargs)
+        for field in self.fields:
+            self.fields[field].widget.attrs.update({'class': 'form-control'})
+ 

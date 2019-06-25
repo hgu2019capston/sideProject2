@@ -15,8 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from coding import views
+
 
 urlpatterns = [
-    path('', include('coding.urls')),
+    path('', views.codePage),
+    path('ajax/code', views.postCode, name='code_submit'),
     path('admin/', admin.site.urls),
 ]

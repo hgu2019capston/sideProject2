@@ -1,7 +1,63 @@
-<div>
-    <form method='POST'>
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type = "submit"> run </button>
-    </form>
-</div>   
+{% extends "base.html" %}
+
+{% block head %}
+	<title>Code Form[FBV]</title>
+{% endblock %}
+{% block style %}
+{% endblock %}
+{% block content %}
+<div class="container">
+   <div class="jumbotron">
+      <h1 class="text-center display-4">Contact Form[FBV]</h1>
+      <p class="lead text-center">This is sample example for integration of AJAX with Django</p>
+    </div>
+    <div class="row justify-content-center align-items-center">
+      <div class="col-sm-6 ">
+      	<form id = "codeForm" method= "POST">{% csrf_token %}
+      		{{ form.as_p }}
+      		<input type="submit" name="code-submit" class="btn btn-primary" />
+      	</form>
+      </div>
+      <div class="col-9" id = "user_info">
+   	<hr />
+   	<table class="table table-stripped table-fixed">
+		<thead>
+			<tr>
+				<td>First Name</td>
+				<td>Last Name</td>
+				<td>Email</td>
+				<td>is_active</td>
+				<td>Date Joined</td>
+			</tr>
+		</thead>
+   		<tbody>
+   		</tbody>
+   	</table>
+   </div>
+   </div>
+</div>
+{% endblock %}
+{% block script %}
+<script type="text/javascript">
+$(document).ready(function(){
+   $("#codeForm").submit(function(e){
+	// prevent from normal form behaviour
+      	e.preventDefault();
+    	// serialize the form data  
+      	var serializedData = $(this).serialize();
+      	$.ajax({
+      		type : 'POST',
+      		url :  "{% url 'code_submit' %}",
+      		data : serializedData,
+      		success : function(response){
+			//reset the form after successful submit
+      			$("#codeForm")[0].reset(); 
+      		},
+      		error : function(response){
+      			console.log(response)
+      		}
+      	});
+   });
+});
+</script>
+{% endblock %}   
