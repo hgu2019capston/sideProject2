@@ -35,7 +35,5 @@ def postCode(request):
 	if request.method == "POST" and request.is_ajax():
 		form = CodingForm(request.POST)
 		form.save()
-                file(Coding.languages)
-                code=runfile(Coding.languages)
 		return JsonResponse({"success":True}, status=200)
 	return JsonResponse({"success":False}, status=400)
