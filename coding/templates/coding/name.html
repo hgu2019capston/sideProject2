@@ -37,7 +37,7 @@ $(document).ready(function(){
       		data : serializedData,
       		success : function(response){
 			//reset the form after successful submit
-      			$("#coding-result").text(response.success); 
+      			$("#coding-result").text(response.result); 
       		},
       		error : function(response){
       			console.log(response)
